@@ -1,21 +1,17 @@
 public class Main {
-    static int[] amounts = new int[100];
-    static String[] borrowers = new String[100];
-    static boolean[] isPaid = new boolean[100];
-    static double[] interestRates = new double[100];
-    static int loansCount = 0;
+    static Loan[] loans = new Loan[100];
 
     public static void addLoan(String borrower, int amount, double interestRate){
-        borrowers[loansCount] = borrower;
-        amounts[loansCount] = amount;
-        interestRates[loansCount] = interestRate;
+        Loan loan = new Loan(borrower, amount, interestRate);
+        loans[loansCount] = loan;
         loansCount++;
     }
 
     public static void setAsPaid(String borrower){
         for (int i=0; i< loansCount; i++){
-            if (borrowers[i].equals(borrower)){
-                isPaid[i] = true;
+            Loan loan = loans[i];
+            if (loan.getBorrower().equals(borrower)){
+                loan.setAsPaid();
             }
         }
     }
